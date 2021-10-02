@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:8080
+@api = items
+@id = 615863d117fc83feaafd027b
+
+### @name getAll
+GET {{baseUrl}}/{{api}}
+
+### @name getByID
+GET {{baseUrl}}/{{api}}/{{id}}
+
+### @name createNew
+POST {{baseUrl}}/{{api}}
+Content-Type: application/json
+
+{
+    "name": "abc",
+    "createAt": 123,
+    "isChecked": true
+}
+
+### @name deleteByID
+DELETE {{baseUrl}}/{{api}}/{{id}}
+
+### @name updateByID
+PUT {{baseUrl}}/{{api}}/{{id}}
+Content-Type: application/json
+
+{
+    "isChecked": false
+}

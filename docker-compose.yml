@@ -1,0 +1,38 @@
+version: "3"
+
+networks:
+  common:
+
+volumes:
+  db-data:
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:${PORT}
+    volumes:
+      - ./:/app
+    environment:
+      MESSAGE: "App is running"
+    networks:
+      - common
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: mongodb
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - db-data:/data/db
+    networks:
+      - common
